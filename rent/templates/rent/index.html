@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="bannerSec">
+    <div class="bannerImg-sm d-sm-block d-md-none">
+        <img src="{% static 'img/main_phone.png' %}" alt="img">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bannercntSec">
+                    <div class="bannerImg">
+                        {% include 'includes/inc_main_photos.html' %}
+
+                        <div class="bannerbtn 1d-block d-none d-sm-none d-md-block d-xl-none mt-0 mt-md-4">
+                            <button class="btn btnlightblue me-3">Поиск недвижимости</button>
+                            <button class="btn btndarkblue">Разместить объявление</button>
+                        </div>
+                    </div>
+
+                    <div class="bannercnt">
+                        <h2 class="textblackcolor">Найди идеальный дом<span
+                                class="textbluecolor"> с помощью СамолеТа</span>
+                        </h2>
+                        <p class="textgraycolor">Аренда и продажа недвижимости по выгодным ценам!</p>
+                        <div class="bannerbtn d-block d-sm-block d-md-none d-lg-none d-xl-block">
+                            <button class="btn btnlightblue me-3">Поиск недвижимости</button>
+                            <button class="btn btndarkblue">Разместить объявление</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
