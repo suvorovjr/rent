@@ -11,27 +11,30 @@
                     <div class="bannerImg d-none d-xl-flex">
                         {% include 'includes/inc_main_photos.html' %}
                     </div>
-
                     <div class="signctn">
-                        <h2 style="text-align: center" class="textwhitecolor signheading">Вход в <span class="textbluecolor">Самолет</span>
+                        <h2 style="text-align: center" class="textwhitecolor signheading">Войдите или
+                            зарегистрируйтесь,
+                            <span class="textbluecolor"><br> чтобы разместить объявление<br> или новость</span>
                         </h2>
                         <form method="post">
                             {% csrf_token %}
                             <div class="input-box">
                                 {{ form.username|add_placeholder:'E-mail' }}
                             </div>
+
                             <div class="input-box">
                                 {{ form.password|add_placeholder:'Введите пароль' }}
                             </div>
-                            {% if form.non_field_errors %}
-                            <div style="max-width: 400px" class="signup-link">{{ form.non_field_errors }}</div>
-                            <br>
-                            {% endif %}
                             <div class="sign-btn">
+                                {% if form.non_field_errors %}
+                                <div style="max-width: 400px" class="signup-link">{{ form.non_field_errors }}</div>
+                                <br>
+                                {% endif %}
                                 <button type="submit" class="btn btnlightblue me-3">Войти</button>
                                 <button class="btn btndarkblue">Восстановить пароль</button>
                             </div>
                         </form>
+
 
                         {% include 'includes/inc_social_link.html' %}
                         <div class="signup-link">

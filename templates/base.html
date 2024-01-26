@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{% static 'css/slick.css' %}">
     <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/rooms.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/room.min.css' %}">
     <meta name="theme-color" content="#sdfsf">
 </head>
 <body class="themebgcolor">
@@ -91,11 +91,26 @@
                                    data-bs-auto-close="outside">Профиль</a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     {% if user.is_authenticated %}
-                                        <li><a class="dropdown-item" href="{% url 'users:logout' %}">Выход</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'users:signup' %}">Профиль</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'users:logout' %}">Выход</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'users:signup' %}">Профиль</a></li>
                                     {% else %}
-                                        <li><a class="dropdown-item" href="{% url 'users:auth' %}">Вход</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'users:signup' %}">Регистрация</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'users:auth' %}">Вход</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'users:signup' %}">Регистрация</a></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown d-xl-none">
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                   data-bs-auto-close="outside">Размещение</a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    {% if user.is_authenticated %}
+                                    <li><a class="dropdown-item" href="{% url 'users:logout' %}">Разместить новость</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'users:signup' %}">Разместить объявление</a></li>
+                                    {% else %}
+                                    <li><a class="dropdown-item" href="{% url 'users:login' %}">Разместить новость</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{% url 'users:login' %}">Разместить объявление</a></li>
                                     {% endif %}
                                 </ul>
                             </li>
@@ -128,9 +143,22 @@
                             {% endif %}
                         </ul>
                     </div>
-                    <a class="btn" href="wallet.html">
-                        <img src="{% static 'img/plus.svg' %}" alt="img">
-                    </a>
+                    <div class="dropdown me-md-3 me-lg-2 me-xl-1 me-xxl-3">
+                        <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{% static 'img/plus.svg' %}" alt="img">
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="{% url 'users:logout' %}">Разместить новость</a></li>
+                            <li><a class="dropdown-item" href="{% url 'users:signup' %}">Разместить объявление</a></li>
+                            {% else %}
+                            <li><a class="dropdown-item" href="{% url 'users:login' %}">Разместить новость</a></li>
+                            <li><a class="dropdown-item" href="{% url 'users:login' %}">Разместить объявление</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -195,7 +223,13 @@
                     <ul>
                         <li><a href="aboutus.html">Навигация</a></li>
                         <li><a href="faq.html">Контакты</a></li>
-                        <li><a href="blogstyle1.html">Разместить объявление</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'users:logout' %}">Разместить новость</a></li>
+                        <li><a href="{% url 'users:signup' %}">Разместить объявление</a></li>
+                        {% else %}
+                        <li><a href="{% url 'users:login' %}">Разместить новость</a></li>
+                        <li><a href="{% url 'users:login' %}">Разместить объявление</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
