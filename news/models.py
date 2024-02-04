@@ -15,8 +15,8 @@ class Categories(models.Model):
 
 
 class News(models.Model):
-    title = models.CharField(max_length=100, verbose_name='Заголовок')
-    slug = models.CharField(max_length=100, unique=True, verbose_name='Слаг')
+    title = models.CharField(max_length=255, verbose_name='Заголовок')
+    slug = models.CharField(max_length=255, unique=True, verbose_name='Слаг', **NULLABLE)
     body = models.TextField(verbose_name='Описание')
     image = models.ImageField(verbose_name='Превью', **NULLABLE)
     date = models.DateField(auto_now_add=True, verbose_name='Дата создания')
