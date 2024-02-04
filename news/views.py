@@ -20,6 +20,7 @@ class NewsCreationView(CreateView):
 
 class NewsListView(ListView):
     model = News
+    queryset = News.objects.filter(is_active=True)
 
 
 class NewsDetailView(DetailView):

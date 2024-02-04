@@ -30,3 +30,17 @@ class News(models.Model):
     class Meta:
         verbose_name = 'новость'
         verbose_name_plural = 'новости'
+
+
+class Version(models.Model):
+    news = models.ForeignKey(News, on_delete=models.CASCADE, verbose_name='новость')
+    version_number = models.DecimalField(max_digits=7, decimal_places=2, verbose_name='Номер версии')
+    version_name = models.CharField(max_length=255, verbose_name='название версии')
+    is_active = models.BooleanField(default=True, verbose_name='Текущая версия')
+
+    def __str__(self):
+        return f'{self.version_name} - {self.version_number}'
+
+    class Meta:
+        verbose_name = 'версия'
+        verbose_name_plural = 'версии'
