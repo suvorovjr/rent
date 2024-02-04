@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from news.forms import NewsForm
 from news.models import News
 from pytils.translit import slugify
@@ -16,6 +16,10 @@ class NewsCreationView(CreateView):
             news.slug = slugify(news.title)
             news.save()
         return super().form_valid(form)
+
+
+class NewsListView(ListView):
+    model = News
 
 
 class NewsDetailView(DetailView):
