@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load my_tags %}
+{% block content %}
+<!-- Popular collections -->
+<div class="create-items mt-3 pt-3 mt-md-4 pt-md-4 mt-lg-5 pt-lg-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 create-form-outer">
+                <div class="title-heading mb-4 pb-2 pb-lg-0 ">
+                    <h2 class="headingWh ">Создание новости</h2>
+                </div>
+                <div class="create-form">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-xl-9 pb-md-4 pb-3">
+                                <label>Загрузите изображение</label>
+                                <div class="custom-file-upload">
+                                    <div class="file-upload">
+                                        {{ form.image }}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-9 pb-md-4 pb-3">
+                                <label>Заголовок</label>
+                                {{ form.title|add_placeholder:'Заголовок' }}
+                            </div>
+                            <div class="col-xl-9 pb-md-4 pb-3">
+                                <label>Выберите категорию</label>
+                                <div class="btn-group w-100">
+                                    {{ form.category|add_placeholder:'Заголовок' }}
+                                </div>
+                            </div>
+
+                            <div class="col-xl-9 pb-md-4 pb-3">
+                                <label>Описание</label>
+                                {{ form.body|add_placeholder:'Описание' }}
+                            </div>
+                            <div class="col-lg-12 pt-3 d-none d-lg-block ">
+                                <button type="submit" class="btn btnlightblue m-auto m-md-0 d-table d-md-block">
+                                    Создать
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-4 pt-1 mb-2 ">
+                <button class="btn btnlightblue savebtn d-block m-auto d-lg-none">Создать</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

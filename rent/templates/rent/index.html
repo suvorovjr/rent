@@ -14,8 +14,13 @@
                         {% include 'includes/inc_main_photos.html' %}
 
                         <div class="bannerbtn 1d-block d-none d-sm-none d-md-block d-xl-none mt-0 mt-md-4">
-                            <button class="btn btnlightblue me-3">Поиск недвижимости</button>
-                            <button class="btn btndarkblue">Разместить объявление</button>
+                            <a href="#">
+                                <button class="btn btnlightblue me-3">Поиск недвижимости</button>
+                            </a>
+                            <a href="{% url 'users:login' %}">
+                                <button class="btn btndarkblue">Разместить объявление</button>
+                            </a>
+
                         </div>
                     </div>
 
@@ -25,8 +30,12 @@
                         </h2>
                         <p class="textgraycolor">Аренда и продажа недвижимости по выгодным ценам!</p>
                         <div class="bannerbtn d-block d-sm-block d-md-none d-lg-none d-xl-block">
-                            <button class="btn btnlightblue me-3">Поиск недвижимости</button>
-                            <button class="btn btndarkblue">Разместить объявление</button>
+                            <a href="{% url 'users:login' %}">
+                                <button class="btn btnlightblue me-3">Поиск недвижимости</button>
+                            </a>
+                            <a href="{% url 'users:login' %}">
+                                <button class="btn btndarkblue">Разместить объявление</button>
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -16,8 +16,9 @@
                     </div>
 
                     <div class="bannercnt signctn">
-                        <h2 class="textwhitecolor signheading">Регистрация на <span
-                                class="textbluecolor">Самолете</span>
+                        <h2 style="margin: auto; margin-bottom: 15px" class="textwhitecolor signheading">Регистрация на
+                            <span
+                                    class="textbluecolor">Самолете</span>
                         </h2>
                         <div class="sign-from signup-form">
                             <form method="post">
@@ -26,25 +27,19 @@
                                     {{ form.email|add_placeholder:'E-mail' }}
                                 </div>
                                 <div class="row input-box">
-                                    <div class="col-md-6">
-                                        {{ form.password1|add_placeholder:'Введите пароль' }}
-                                    </div>
-                                    <div class="col-md-6">
-                                        {{ form.password2|add_placeholder:'Подтвердите пароль' }}
-                                    </div>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        Я согласен с политикой конциденциальности
-                                    </label>
+                                    {% for name, error in form.errors.items %}
+                                    <br>
+                                    <div style="max-width: 400px; margin: auto" class="signup-link">{{ error }}</div>
+                                    {% if loop.last %}
+                                    <br>
+                                    {% endif %}
+                                    {% endfor %}
                                 </div>
                                 <div class="sign-btn">
-                                    <button style="margin: auto" type="submit" class="btn btnlightblue me-3">
+                                    <button type="submit" class="btn btnlightblue me-3">
                                         Регистрация
                                     </button>
                                 </div>
-                            </form>
                         </div>
 
                         {% include 'includes/inc_social_link.html' %}

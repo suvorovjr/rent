@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     'rent',
     'users',
+    'news',
 ]
 
 MIDDLEWARE = [
@@ -103,13 +104,20 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_TZ = True
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379'
+    }
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -126,7 +134,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 2525
-EMAIL_HOST_USER = "pglavan@mail.ru"
+EMAIL_HOST_USER = "pglavan1998@mail.ru"
 EMAIL_HOST_PASSWORD = os.getenv('MAIL_PASSWORD')
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
@@ -134,3 +142,6 @@ EMAIL_USE_SSL = False
 AUTH_USER_MODEL = 'users.User'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
