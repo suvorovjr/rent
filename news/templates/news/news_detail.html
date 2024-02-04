@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load news_tags %}
 {% load static %}
 {% block content %}
 <main>
@@ -20,7 +21,7 @@
                         <span class="item d-inline-flex align-items-center">
                                     <img style="width: 30px" src="{% static 'img/views.svg' %}" alt="img">
                                     <span class="number">{{ object.views_count }}</span>
-                                    <span class="text">просмотров</span>
+                                    <span class="text">{{ object.views_count|get_views }}</span>
                                 </span>
                     </div>
                     <p class="post_main-article_text">
