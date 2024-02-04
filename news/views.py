@@ -1,4 +1,4 @@
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from news.forms import NewsForm
 from news.models import News
@@ -28,6 +28,10 @@ class NewsDetailView(DetailView):
 
 class NewsUpdateView(UpdateView):
     model = News
+    form_class = NewsForm
+
+    def get_success_url(self):
+        return reverse('news:news_detail', args=[self.object.slug])
 
 
 class NewsDeleteView(DeleteView):

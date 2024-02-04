@@ -17,7 +17,7 @@
                             <span class="media_label">{{ object.category }}</span>
                         </div>
                         <div class="main d-sm-flex d-xl-block flex-column justify-content-between">
-                            <a class="main_title h4" href="{% url 'news:news_detail' %}" data-shave="true"
+                            <a class="main_title h4" href="{% url 'news:news_detail' object.slug %}" data-shave="true"
                             >{{ object.title }}</a
                             >
                             <p class="main_preview">

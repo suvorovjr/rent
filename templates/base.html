@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/room.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/post.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/news.min.css' %}">
     <meta name="theme-color" content="#sdfsf">
 </head>
@@ -106,7 +107,7 @@
                                    data-bs-auto-close="outside">Размещение</a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     {% if user.is_authenticated %}
-                                    <li><a class="dropdown-item" href="{% url 'news:create_news' %}">Разместить
+                                    <li><a class="dropdown-item" href="{% url 'news:create' %}">Разместить
                                         новость</a></li>
                                     <li><a class="dropdown-item" href="{% url 'users:signup' %}">Разместить
                                         объявление</a></li>
@@ -155,7 +156,7 @@
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             {% if user.is_authenticated %}
-                            <li><a class="dropdown-item" href="{% url 'news:create_news' %}">Разместить новость</a></li>
+                            <li><a class="dropdown-item" href="{% url 'news:create' %}">Разместить новость</a></li>
                             <li><a class="dropdown-item" href="{% url 'users:signup' %}">Разместить объявление</a></li>
                             {% else %}
                             <li><a class="dropdown-item" href="{% url 'users:login' %}">Разместить новость</a></li>
