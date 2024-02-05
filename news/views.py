@@ -8,7 +8,7 @@ from pytils.translit import slugify
 class NewsCreationView(CreateView):
     model = News
     form_class = NewsForm
-    success_url = reverse_lazy('rent:index')
+    success_url = reverse_lazy('realty:index')
 
     def form_valid(self, form):
         if form.is_valid():

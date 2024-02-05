@@ -1,12 +1,12 @@
 from django.urls import path
-from rent.views import index, rooms
-from rent.apps import RentConfig
+from realty.views import index, RealtyCreateView
+from realty.apps import RealtyConfig
 
-app_name = RentConfig.name
+app_name = RealtyConfig.name
 
 urlpatterns = [
     path('', index, name='index'),
-    path('rooms', rooms, name='rooms'),
+    path('realty/create/', RealtyCreateView.as_view(), name='create'),
     # path('search_realty', ..., name='search_realty'),
     # path('create_realty', ..., name='create_realty'),
     # path('update_realty', ..., name='update_realty'),
