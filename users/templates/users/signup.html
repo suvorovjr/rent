@@ -27,6 +27,14 @@
                                     {{ form.email|add_placeholder:'E-mail' }}
                                 </div>
                                 <div class="row input-box">
+                                    <div class="col-md-6">
+                                        {{ form.password1|add_placeholder:'Введите пароль' }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ form.password2|add_placeholder:'Подтвердите пароль' }}
+                                    </div>
+                                </div>
+                                <div class="row input-box">
                                     {% for name, error in form.errors.items %}
                                     <br>
                                     <div style="max-width: 400px; margin: auto" class="signup-link">{{ error }}</div>
