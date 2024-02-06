@@ -17,11 +17,11 @@ class TypeRealty(models.Model):
 
 
 class TypeTransaction(models.Model):
-    type = models.CharField(max_length=50, unique=True, verbose_name='Тип сделки')
+    transaction = models.CharField(max_length=50, unique=True, verbose_name='Тип сделки')
     description = models.CharField(max_length=150, verbose_name='Описание сделки', **NULLABLE)
 
     def __str__(self):
-        return self.type
+        return self.transaction
 
     class Meta:
         verbose_name = 'Сделка'
@@ -33,7 +33,7 @@ class Rooms(models.Model):
     description = models.CharField(max_length=150, verbose_name='Описание комнат', **NULLABLE)
 
     def __str__(self):
-        return self.number
+        return f'{self.number}'
 
     class Meta:
         verbose_name = 'Комната'
@@ -41,8 +41,8 @@ class Rooms(models.Model):
 
 
 class Realty(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Владелец')
-    _type = models.ForeignKey(TypeRealty, on_delete=models.SET_NULL, **NULLABLE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Владелец', **NULLABLE)
+    realty_type = models.ForeignKey(TypeRealty, on_delete=models.SET_NULL, **NULLABLE)
     transaction = models.ForeignKey(TypeTransaction, on_delete=models.SET_NULL, **NULLABLE)
     room = models.ForeignKey(Rooms, on_delete=models.SET_NULL, **NULLABLE)
     title = models.CharField(max_length=150, verbose_name='Заголовок', **NULLABLE)
