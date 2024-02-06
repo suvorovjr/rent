@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import User
 
 NULLABLE = {'blank': True, 'null': True}
 
@@ -23,6 +24,7 @@ class News(models.Model):
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, verbose_name='Категория')
     views_count = models.IntegerField(default=0, verbose_name='Количество просмотров')
     is_active = models.BooleanField(default=True, verbose_name='Активность')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор', **NULLABLE)
 
     def __str__(self):
         return self.title

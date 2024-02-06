@@ -14,6 +14,7 @@ class NewsCreationView(CreateView):
         if form.is_valid():
             news = form.save()
             news.slug = slugify(news.title)
+            news.author = self.request.user
             news.save()
         return super().form_valid(form)
 
