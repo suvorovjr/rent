@@ -6,7 +6,7 @@ class StylesMixin:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['class'] = 'form-input'
 
 
 class LoginForm(StylesMixin, AuthenticationForm):
@@ -18,4 +18,4 @@ class LoginForm(StylesMixin, AuthenticationForm):
 class UserForm(StylesMixin, UserCreationForm):
     class Meta:
         model = User
-        fields = ('email',)
+        fields = ('email', 'password1', 'password2')

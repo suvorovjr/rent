@@ -20,15 +20,14 @@
 </head>
 <body class="themebgcolor">
 <div class="circlebg1"><img class="img-fluid" src="{% static 'img/circlebg19.svg' %}" alt="img"></div>
-<div class="circlebg2"><img class="img-fluid" src="{% static 'img/circlebg20.svg' %}" alt="img"></div>
-<div class="circlebg3"><img class="img-fluid" src="{% static 'img/circlebg21.svg' %}" alt="img"></div>
+
 
 <!-- header -->
 <header>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="logo"><a href="{% url 'rent:index' %}"><img
+                <div class="logo"><a href="{% url 'realty:index' %}"><img
                         style="display:inline-flex;align-items:center;align-content:center;"
                         src="{% static 'img/logo_gray.svg' %}"
                         alt="img"></a>
@@ -66,26 +65,18 @@
 
                         <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
                             <li class="nav-item dropdown active">
-                                <a class="nav-link" aria-current="page" href="{% url 'rent:index' %}">Главная</a>
+                                <a class="nav-link" aria-current="page" href="{% url 'realty:index' %}">Главная</a>
                             </li>
-
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="{% url 'rent:index' %}"
-                                   data-bs-toggle="dropdown"
-                                   data-bs-auto-close="outside">Поиск недвижимости</a>
-                                <ul class="dropdown-menu shadow">
-                                    <li><a class="dropdown-item" href="discover1.html">Покупка</a></li>
-                                    <li><a class="dropdown-item" href="discover2.html">Посуточная аренда</a></li>
-                                    <li><a class="dropdown-item" href="discover3.html">Долгосрочная аренда</a></li>
-                                </ul>
+                                <a class="nav-link" aria-current="page" href="{% url 'realty:list' %}">Поиск
+                                    недвижимости</a>
                             </li>
-
                             <li class="nav-item dropdown">
                                 <a class="nav-link" aria-current="page" href="{% url 'news:list' %}">Новости</a>
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link" aria-current="page" href="{% url 'rent:index' %}">Контакты</a>
+                                <a class="nav-link" aria-current="page" href="{% url 'realty:index' %}">Контакты</a>
                             </li>
 
                             <li class="nav-item dropdown d-xl-none">
@@ -94,7 +85,7 @@
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     {% if user.is_authenticated %}
                                     <li><a class="dropdown-item" href="{% url 'users:logout' %}">Выход</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'users:signup' %}">Профиль</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'users:profile' %}">Профиль</a></li>
                                     {% else %}
                                     <li><a class="dropdown-item" href="{% url 'users:auth' %}">Вход</a></li>
                                     <li><a class="dropdown-item" href="{% url 'users:signup' %}">Регистрация</a></li>
@@ -141,7 +132,7 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             {% if user.is_authenticated %}
                             <li><a class="dropdown-item" href="{% url 'users:logout' %}">Выход</a></li>
-                            <li><a class="dropdown-item" href="{% url 'users:signup' %}">Профиль</a></li>
+                            <li><a class="dropdown-item" href="{% url 'users:profile' %}">Профиль</a></li>
                             {% else %}
                             <li><a class="dropdown-item" href="{% url 'users:auth' %}">Вход</a></li>
                             <li><a class="dropdown-item" href="{% url 'users:signup' %}">Регистрация</a></li>
@@ -157,7 +148,7 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             {% if user.is_authenticated %}
                             <li><a class="dropdown-item" href="{% url 'news:create' %}">Разместить новость</a></li>
-                            <li><a class="dropdown-item" href="{% url 'users:signup' %}">Разместить объявление</a></li>
+                            <li><a class="dropdown-item" href="{% url 'realty:create' %}">Разместить объявление</a></li>
                             {% else %}
                             <li><a class="dropdown-item" href="{% url 'users:login' %}">Разместить новость</a></li>
                             <li><a class="dropdown-item" href="{% url 'users:login' %}">Разместить объявление</a></li>
@@ -177,7 +168,7 @@
             <div class="col-lg-12 col-xl-4">
                 <div class="footsec">
                     <div class="footlogocntSec">
-                        <a href="{% url 'rent:index' %}" class="footlogo"><img
+                        <a href="{% url 'realty:index' %}" class="footlogo"><img
                                 style="display:inline-flex;align-items:center;align-content:center;"
                                 src="{% static 'img/logo_white.svg' %}" alt="img"></a>
                         <p>Аренда и продажа недвижимости по выгодным ценам!</p>
@@ -205,7 +196,7 @@
                     <ul>
                         {% if user.is_authenticated %}
                         <li><a class="dropdown-item" href="{% url 'users:logout' %}">Выход</a></li>
-                        <li><a class="dropdown-item" href="{% url 'users:signup' %}">Профиль</a></li>
+                        <li><a class="dropdown-item" href="{% url 'users:profile' %}">Профиль</a></li>
                         {% else %}
                         <li><a class="dropdown-item" href="{% url 'users:auth' %}">Вход</a></li>
                         <li><a class="dropdown-item" href="{% url 'users:signup' %}">Регистрация</a></li>
@@ -216,10 +207,7 @@
                 <div class="footlinks">
                     <h2>Поиск недвижимости</h2>
                     <ul>
-                        <li><a href="#">Покупка</a></li>
-                        <li><a href="#">Посуточная аренда</a></li>
-                        <li><a href="#">Долгосрочная аренда</a></li>
-                        <li><a href="#">Поиск недвижимости</a></li>
+                        <li><a href="href={% url 'realty:list' %}">Поиск недвижимости</a></li>
                     </ul>
                 </div>
 

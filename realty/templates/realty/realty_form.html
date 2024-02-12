@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load my_tags %}
+{% block content %}
+<!-- Popular collections -->
+<div class="create-items mt-3 pt-3 mt-md-4 pt-md-4 mt-lg-5 pt-lg-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 create-form-outer">
+                <div class="title-heading mb-4 pb-2 pb-lg-0 ">
+                    {% if object %}
+                    <h2 class="headingWh ">Редактирование объявления</h2>
+                    {% else %}
+                    <h2 class="headingWh ">Создание объявления</h2>
+                    {% endif %}
+                </div>
+                <div class="create-form">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-xl-9 pb-md-4 pb-3">
+                                <label>Загрузите изображения</label>
+                                <div class="custom-file-upload">
+                                    <div class="file-upload">
+                                        {{ form.imagine_field }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-9 pb-md-4 pb-3">
+                                <label>Тип недвижимости</label>
+                                {{ form.realty_type }}
+                            </div>
+                            <div class="col-xl-9 pb-md-4 pb-3">
+                                <label>Тип сделки</label>
+                                {{ form.transaction }}
+                            </div>
+                            <div class="col-xl-9 pb-md-4 pb-3">
+                                <label>Количество комнат</label>
+                                <div class="btn-group w-100">
+                                    {{ form.room }}
+                                </div>
+                            </div>
+                            <div class="col-xl-9 pb-md-4 pb-3">
+                                <label>Цена</label>
+                                {{ form.price|add_placeholder:'Цена' }}
+                            </div>
+                            <div class="col-xl-4 pb-md-4 pb-3">
+                                <label>Этаж</label>
+                                {{ form.floor|add_placeholder:'Этаж' }}
+                            </div>
+                            <div class="col-xl-5 pb-md-4 pb-3">
+                                <label>Этажей в доме</label>
+                                {{ form.max_floor|add_placeholder:'Этажей в доме' }}
+                            </div>
+                            <div class="col-xl-9 pb-md-4 pb-3">
+                                <label>Площадь</label>
+                                {{ form.square|add_placeholder:'Площадь' }}
+                            </div>
+                            <div class="col-xl-9 pb-md-4 pb-3">
+                                <label>Описание</label>
+                                {{ form.description|add_placeholder:'Описание' }}
+                            </div>
+                            <div class="col-lg-12 pt-3 d-none d-lg-block ">
+                                {% if object %}
+                                <button type="submit" class="btn btnlightblue m-auto m-md-0 d-table d-md-block">
+                                    Сохранить
+                                </button>
+                                {% else %}
+                                <button type="submit" class="btn btnlightblue m-auto m-md-0 d-table d-md-block">
+                                    Создать
+                                </button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-4 pt-1 mb-2 ">
+                <button class="btn btnlightblue savebtn d-block m-auto d-lg-none">Создать</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

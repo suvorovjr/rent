@@ -8,12 +8,13 @@ from pytils.translit import slugify
 class NewsCreationView(CreateView):
     model = News
     form_class = NewsForm
-    success_url = reverse_lazy('rent:index')
+    success_url = reverse_lazy('realty:index')
 
     def form_valid(self, form):
         if form.is_valid():
             news = form.save()
             news.slug = slugify(news.title)
+            news.author = self.request.user
             news.save()
         return super().form_valid(form)
 
@@ -36,6 +37,14 @@ class NewsDetailView(DetailView):
 class NewsUpdateView(UpdateView):
     model = News
     form_class = NewsForm
+
+    def form_valid(self, form):
+        if form.is_valid():
+            news = form.save()
+            news.slug = slugify(news.title)
+            news.author = self.request.user
+            news.save()
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('news:news_detail', args=[self.object.slug])
