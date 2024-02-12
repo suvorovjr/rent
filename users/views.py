@@ -1,11 +1,13 @@
 from django.contrib.auth.views import LoginView as BaseLoginView
 from django.core.mail import send_mail
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from config import settings
 from users.forms import UserForm, LoginForm
 from django.urls import reverse_lazy
 from users.models import User
+from news.models import News
+from realty.models import Realty
 
 
 class LoginView(BaseLoginView):
@@ -35,5 +37,12 @@ class LoginAddView(LoginView):
     template_name = 'users/signin_add.html'
 
 
-def profile(request):
-    return render(request, 'users/profile.html')
+class ProfileListView(ListView):
+    model = Realty
+    template_name = 'realty/profile.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        user = self.request.user
+        queryset = queryset.filter(owner=user)
+        return queryset
