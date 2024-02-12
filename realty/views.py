@@ -1,12 +1,11 @@
-from django.shortcuts import render
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, TemplateView
 from django.urls import reverse_lazy
 from realty.models import Realty, RealtyPhoto
 from realty.forms import RealtyForm
 
 
-def index(request):
-    return render(request, 'realty/index.html')
+class IndexView(TemplateView):
+    template_name = 'realty/index.html'
 
 
 class RealtyCreateView(CreateView):
@@ -39,4 +38,3 @@ class RealtyCreateView(CreateView):
 
 class RealtyListView(ListView):
     model = Realty
-
