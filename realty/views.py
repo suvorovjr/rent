@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from django.urls import reverse_lazy
 from realty.models import Realty, RealtyPhoto
 from realty.forms import RealtyForm
@@ -36,4 +36,7 @@ class RealtyCreateView(CreateView):
             realty_photo.save()
         return super().form_valid(form)
 
-    # Replace with your URL or reverse().
+
+class RealtyListView(ListView):
+    model = Realty
+

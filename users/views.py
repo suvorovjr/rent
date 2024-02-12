@@ -1,5 +1,6 @@
 from django.contrib.auth.views import LoginView as BaseLoginView
 from django.core.mail import send_mail
+from django.shortcuts import render
 from django.views.generic import CreateView
 from config import settings
 from users.forms import UserForm, LoginForm
@@ -32,3 +33,7 @@ class RegisterView(CreateView):
 
 class LoginAddView(LoginView):
     template_name = 'users/signin_add.html'
+
+
+def profile(request):
+    return render(request, 'users/profile.html')

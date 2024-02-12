@@ -9,9 +9,9 @@
             <div class="col-lg-7 create-form-outer">
                 <div class="title-heading mb-4 pb-2 pb-lg-0 ">
                     {% if object %}
-                        <h2 class="headingWh ">Редактирование объявления</h2>
+                    <h2 class="headingWh ">Редактирование объявления</h2>
                     {% else %}
-                        <h2 class="headingWh ">Создание объявления</h2>
+                    <h2 class="headingWh ">Создание объявления</h2>
                     {% endif %}
                 </div>
                 <div class="create-form">
@@ -42,23 +42,23 @@
                             </div>
                             <div class="col-xl-9 pb-md-4 pb-3">
                                 <label>Цена</label>
-                                {{ form.price }}
+                                {{ form.price|add_placeholder:'Цена' }}
                             </div>
                             <div class="col-xl-4 pb-md-4 pb-3">
                                 <label>Этаж</label>
-                                {{ form.floor }}
+                                {{ form.floor|add_placeholder:'Этаж' }}
                             </div>
                             <div class="col-xl-5 pb-md-4 pb-3">
                                 <label>Этажей в доме</label>
-                                {{ form.max_floor }}
+                                {{ form.max_floor|add_placeholder:'Этажей в доме' }}
                             </div>
                             <div class="col-xl-9 pb-md-4 pb-3">
                                 <label>Площадь</label>
-                                {{ form.square }}
+                                {{ form.square|add_placeholder:'Площадь' }}
                             </div>
                             <div class="col-xl-9 pb-md-4 pb-3">
                                 <label>Описание</label>
-                                {{ form.description }}
+                                {{ form.description|add_placeholder:'Описание' }}
                             </div>
                             <div class="col-lg-12 pt-3 d-none d-lg-block ">
                                 {% if object %}
@@ -78,8 +78,6 @@
             <div class="mt-4 pt-1 mb-2 ">
                 <button class="btn btnlightblue savebtn d-block m-auto d-lg-none">Создать</button>
             </div>
-
-
         </div>
     </div>
 </div>
