@@ -38,3 +38,16 @@ class RealtyCreateView(CreateView):
 
 class RealtyListView(ListView):
     model = Realty
+    context_object_name = 'object_list'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.prefetch_related('photo')
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        obj = context['object_list']
+        for ob in obj:
+            print(ob)
+        return context

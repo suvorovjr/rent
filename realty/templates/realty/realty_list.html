@@ -9,19 +9,17 @@
                 <div class="item-wrapper d-md-flex">
                     <div class="media">
                         <picture>
-                            <source data-srcset="img/placeholder.jpg" srcset="img/placeholder.jpg"/>
-                            <img class="lazy" data-src="img/placeholder.jpg" src="img/placeholder.jpg" alt="media"/>
+                            <img class="lazy" src="{{ object.photo.photo.url }}" alt="media"/>
                         </picture>
-                    </div>
+\                    </div>
                     <div class="main d-md-flex justify-content-between">
                         <div class="main_info d-md-flex flex-column justify-content-between">
-                            <a class="main_title h4" href="room.html">Standard Twin Room Private Shared Bathroom</a>
-                            <p class="main_description">Diam phasellus vestibulum lorem sed risus ultricies
-                                tristique.</p>
+                            <a class="main_title h4" href="room.html">{{ object.title }}</a>
+                            <p class="main_description">{{ object.description }}</p>
                             <div class="main_amenities">
                                         <span class="main_amenities-item d-inline-flex align-items-center">
                                             <i class="icon-user icon"></i>
-                                            2 Sleeps
+                                            {{ object.room }} Комнаты
                                         </span>
                                 <span class="main_amenities-item d-inline-flex align-items-center">
                                             <i class="icon-bunk_bed icon"></i>

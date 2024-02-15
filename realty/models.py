@@ -51,6 +51,7 @@ class Realty(models.Model):
     description = models.TextField(verbose_name='Описание')
     square = models.PositiveIntegerField(verbose_name='Площадь')
     price = models.PositiveIntegerField(verbose_name='Стоимость')
+    publish = models.BooleanField(default=True, verbose_name='Активность')
 
     def __str__(self):
         return self.title
@@ -61,7 +62,7 @@ class Realty(models.Model):
 
 
 class RealtyPhoto(models.Model):
-    realty = models.ForeignKey(Realty, on_delete=models.CASCADE, verbose_name='Жилье')
+    realty = models.ForeignKey(Realty, related_name='photo', on_delete=models.CASCADE, verbose_name='Жилье')
     photo = models.ImageField(upload_to='realty/', verbose_name='Изображение', **NULLABLE)
 
     def __str__(self):
