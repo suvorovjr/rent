@@ -1,4 +1,4 @@
-from django.views.generic import CreateView, ListView, TemplateView
+from django.views.generic import CreateView, ListView, TemplateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from realty.models import Realty, RealtyPhoto
 from realty.forms import RealtyForm
@@ -45,9 +45,19 @@ class RealtyListView(ListView):
         queryset = queryset.prefetch_related('photo')
         return queryset
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        obj = context['object_list']
-        for ob in obj:
-            print(ob)
-        return context
+
+class RealtyDetailView(DetailView):
+    model = Realty
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.prefetch_related('photo')
+        return queryset
+
+
+class RealtyUpdateView(UpdateView):
+    model = Realty
+
+
+class RealtyDeleteView(DeleteView):
+    model = Realty

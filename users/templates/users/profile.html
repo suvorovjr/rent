@@ -3,13 +3,53 @@
 {% block content %}
 <div class="row">
     <div style="text-align:center; margin-top:20px" class="col-lg-6 mx-auto">
-        <img style="width:210px; height:210px; margin:auto;" class="bd-placeholder-img rounded-circle border" src="/media/{{ object_list.user.avatar }}"></img>
+        <img style="width:210px; height:210px; margin:auto;" class="bd-placeholder-img rounded-circle border"
+             src="/media/{{ object_list.user.avatar }}"></img>
         {% if object_list.user.first_name and object_list.user.last_name %}
         <h2 class="fw-normal">{{ object_list.user.first_name }} {{ object_list.user.last_name }}</h2>
         {% else %}
         <h2 class="fw-normal">{{ object_list.user.email }}</h2>
         {% endif %}
-        <a style="margin-top: 10px;" class="btn btn-secondary" href="{% url 'users:profile_update' %}">Редактировать профиль</a></p>
+        <a style="margin-top: 10px;" class="btn btn-secondary" href="{% url 'users:profile_update' %}">Редактировать
+            профиль</a></p>
     </div><!-- /.col-lg-4 -->
+</div>
+<h2 class="display-5 text-center p-3">Мои новости</h2>
+<div class="news mx-auto">
+    <!-- news list start -->
+    <ul class="news_list">
+        {% for object in object_list.user_news %}
+        <li class="news_list-item">
+            <div class="item-wrapper d-sm-flex flex-lg-column flex-xl-row">
+                <div class="media">
+                    <picture>
+                        <img class="lazy" src="/media/{{ object.image }}" alt="media"/>
+                    </picture>
+                    <span class="media_label">{{ object.category }}</span>
+                </div>
+                <div class="main d-sm-flex d-xl-block flex-column justify-content-between">
+                    <a class="main_title h4" href="{% url 'news:news_detail' object.slug %}" data-shave="true"
+                    >{{ object.title }}</a>
+                    <p class="main_preview">
+                        {{ object.body|truncatechars:80 }}
+                    </p>
+                    <div class="main_metadata">
+                                        <span class="main_metadata-item d-inline-flex align-items-center">
+                                            <img style="width: 30px" src="{% static 'img/calendar.svg' %}" alt="img">
+                                            {{ object.date }}
+                                        </span>
+                        <span class="main_metadata-item d-inline-flex align-items-center">
+                                    <img style="width: 30px" src="{% static 'img/views.svg' %}" alt="img">
+                                    <span class="number">{{ object.views_count }}</span>
+                                    <span class="text">{{ object.views_count }}</span>
+                                </span>
+                    </div>
+                    <a href="{% url 'news:update' object.slug %}" class="btn btn-primary me-md-2">Редактировать</a>
+                    <a href="{% url 'news:delete' object.pk %}" class="btn btn-danger me-md-2">Удалить</a>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}

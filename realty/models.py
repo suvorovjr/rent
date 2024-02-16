@@ -51,12 +51,18 @@ class Realty(models.Model):
     description = models.TextField(verbose_name='Описание')
     square = models.PositiveIntegerField(verbose_name='Площадь')
     price = models.PositiveIntegerField(verbose_name='Стоимость')
-    publish = models.BooleanField(default=True, verbose_name='Активность')
+    publish = models.BooleanField(default=False, verbose_name='Активность')
 
     def __str__(self):
         return self.title
 
     class Meta:
+        permissions = [
+            (
+                'set_published',
+                'Can publish posts'
+            )
+        ]
         verbose_name = 'Обьект недвижимости'
         verbose_name_plural = 'Обьекты недвижимости'
 
