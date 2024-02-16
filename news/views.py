@@ -47,8 +47,9 @@ class NewsUpdateView(UpdateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('news:news_detail', args=[self.object.slug])
+        return reverse('users:profile')
 
 
 class NewsDeleteView(DeleteView):
     model = News
+    success_url = reverse_lazy('users:profile')

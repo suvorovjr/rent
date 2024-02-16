@@ -51,17 +51,24 @@ class Realty(models.Model):
     description = models.TextField(verbose_name='Описание')
     square = models.PositiveIntegerField(verbose_name='Площадь')
     price = models.PositiveIntegerField(verbose_name='Стоимость')
+    publish = models.BooleanField(default=False, verbose_name='Активность')
 
     def __str__(self):
         return self.title
 
     class Meta:
+        permissions = [
+            (
+                'set_published',
+                'Can publish posts'
+            )
+        ]
         verbose_name = 'Обьект недвижимости'
         verbose_name_plural = 'Обьекты недвижимости'
 
 
 class RealtyPhoto(models.Model):
-    realty = models.ForeignKey(Realty, on_delete=models.CASCADE, verbose_name='Жилье')
+    realty = models.ForeignKey(Realty, related_name='photo', on_delete=models.CASCADE, verbose_name='Жилье')
     photo = models.ImageField(upload_to='realty/', verbose_name='Изображение', **NULLABLE)
 
     def __str__(self):
