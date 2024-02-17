@@ -44,6 +44,7 @@ class ProfileView(View):
         user = self.request.user
         user_news = News.objects.filter(author=user)
         user_realty = Realty.objects.filter(owner=user)
+        user_realty = user_realty.prefetch_related('photo')
         context = {
             'user': user,
             'user_news': user_news,
