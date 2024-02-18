@@ -78,8 +78,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'realty',
+        'HOST': 'localhost',
         'USER': 'postgres',
-        'PASSWORD': os.getenv('DATABASE_PASSWORD')
+        'PASSWORD': os.getenv('NEW_DATABASE_PASSWORD')
     }
 }
 
