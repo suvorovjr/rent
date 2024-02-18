@@ -1,6 +1,7 @@
 from django.views.generic import CreateView, ListView, TemplateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from realty.models import Realty, RealtyPhoto
+from django.http import Http404
 from realty.forms import RealtyForm
 
 
@@ -59,6 +60,12 @@ class RealtyUpdateView(UpdateView):
     model = Realty
     form_class = RealtyForm
 
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        if self.object.owner != self.request.user and not self.request.user.is_staff:
+            raise Http404
+        return self.object
+
     def post(self, request, *args, **kwargs):
         form_class = self.get_form_class()
         form = self.get_form(form_class)
@@ -87,3 +94,9 @@ class RealtyUpdateView(UpdateView):
 
 class RealtyDeleteView(DeleteView):
     model = Realty
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        if self.object.owner != self.request.user:
+            raise Http404
+        return self.object

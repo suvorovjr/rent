@@ -6,16 +6,6 @@ from realty.models import Rooms, TypeRealty, TypeTransaction, Realty, RealtyPhot
 class TypeRealtyAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
-    def has_change_permission(self, request, obj=None):
-        if obj is not None:
-            if request.user.is_superuser:
-                return True
-            else:
-                if obj.user != request.user:
-                    return False
-                else:
-                    return True
-
 
 @admin.register(Rooms)
 class RoomAdmin(admin.ModelAdmin):
