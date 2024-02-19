@@ -1,8 +1,9 @@
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from news.forms import NewsForm
-from news.models import News
+from news.models import News, Categories
 from django.http import Http404
+from news.filters import NewsFilter
 from pytils.translit import slugify
 
 
@@ -23,6 +24,16 @@ class NewsCreationView(CreateView):
 class NewsListView(ListView):
     model = News
     queryset = News.objects.filter(is_active=True)
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.filterset = NewsFilter(self.request.GET, queryset=queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['filter'] = self.filterset
+        return context_data
 
 
 class NewsDetailView(DetailView):
