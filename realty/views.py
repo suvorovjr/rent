@@ -2,6 +2,8 @@ from django.views.generic import CreateView, ListView, TemplateView, DetailView,
 from django.urls import reverse_lazy, reverse
 from realty.models import Realty, RealtyPhoto
 from realty.filters import RealtyFilter
+from django.core.cache import cache
+from config import settings
 from django.http import Http404
 from realty.forms import RealtyForm
 
@@ -45,7 +47,14 @@ class RealtyListView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         queryset = queryset.prefetch_related('photo')
-        self.filterset = RealtyFilter(self.request.GET, queryset=queryset)
+        cache_key = f'news_filter_{self.request.GET.urlencode()}'
+        if settings.CACHE_ENABLED:
+            self.filterset = cache.get(cache_key)
+            if self.filterset is None:
+                self.filterset = RealtyFilter(self.request.GET, queryset=queryset)
+                cache.set(cache_key, self.filterset)
+        else:
+            self.filterset = RealtyFilter(self.request.GET, queryset=queryset)
         return self.filterset.qs
 
     def get_context_data(self, **kwargs):
