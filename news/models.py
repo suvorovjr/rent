@@ -21,7 +21,7 @@ class News(models.Model):
     body = models.TextField(verbose_name='Описание')
     image = models.ImageField(verbose_name='Превью', **NULLABLE)
     date = models.DateField(auto_now_add=True, verbose_name='Дата создания')
-    category = models.ForeignKey(Categories, on_delete=models.CASCADE, verbose_name='Категория')
+    category = models.ForeignKey(Categories, related_name='category', on_delete=models.CASCADE, verbose_name='Категория')
     views_count = models.IntegerField(default=0, verbose_name='Количество просмотров')
     is_active = models.BooleanField(default=True, verbose_name='Активность')
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор', **NULLABLE)

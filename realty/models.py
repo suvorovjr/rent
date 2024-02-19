@@ -52,6 +52,7 @@ class Realty(models.Model):
     square = models.PositiveIntegerField(verbose_name='Площадь')
     price = models.PositiveIntegerField(verbose_name='Стоимость')
     publish = models.BooleanField(default=False, verbose_name='Активность')
+    date = models.DateField(auto_now_add=True, verbose_name='Дата создания')
 
     def __str__(self):
         return self.title

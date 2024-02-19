@@ -41,21 +41,13 @@
         </div>
         <div class="widgets" data-sticky="true" data-stop="90">
             <div class="widgets_item widgets_item--categories">
-                <h4 class="widgets_item-header">Категории</h4>
-                <ul class="list">
-                    <li class="list-item d-flex align-items-center">
-                        <a class="link" href="#">Travel</a>
-                    </li>
-                    <li class="list-item d-flex align-items-center current">
-                        <a class="link" href="#">Tourist Guide</a>
-                    </li>
-                    <li class="list-item d-flex align-items-center">
-                        <a class="link" href="#">City Sights</a>
-                    </li>
-                    <li class="list-item d-flex align-items-center">
-                        <a class="link" href="#">Communication</a>
-                    </li>
-                </ul>
+                <h4 class="widgets_item-header">Категория</h4>
+                <form method="get" class="form-inline">
+                    <div class="col-xl-5 pb-md-4 pb-3">
+                        {{ filter.form.category }}
+                    </div>
+                        <button type="submit" class="theme-element theme-element--accent btn">Применить фильтр</button>
+                </form>
             </div>
         </div>
     </div>
