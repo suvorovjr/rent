@@ -1,10 +1,11 @@
 from django.contrib.auth.views import LoginView as BaseLoginView
-from django.core.mail import send_mail
-from django.shortcuts import render
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.crypto import get_random_string
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView, UpdateView, View
-from config import settings
+from users.services import send_verification_password
 from users.forms import UserForm, LoginForm, ProfileUpdateForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from users.models import User
 from news.models import News
 from realty.models import Realty
@@ -23,13 +24,10 @@ class RegisterView(CreateView):
     template_name = 'users/signup.html'
 
     def form_valid(self, form):
-        new_user = form.save()
-        send_mail(
-            subject='Привет',
-            message='Приветствую на площадке}',
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[new_user.email]
-        )
+        self.object = form.save()
+        self.object.verification_token = get_random_string(30)
+        verification_link = f'http://{get_current_site(self.request)}/users/confirm/{self.object.verification_token}'
+        send_verification_password(self.object.email, verification_link)
         return super().form_valid(form)
 
 
@@ -61,3 +59,11 @@ class ProfileUpdateView(UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+def activate_user(request, token):
+    user = User.objects.get(verification_token=token)
+    user.verification_token = ''
+    user.is_active = True
+    user.save()
+    return redirect(reverse('users:login'))
