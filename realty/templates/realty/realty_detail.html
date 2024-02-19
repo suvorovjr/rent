@@ -26,6 +26,10 @@
                         <p class="description_text">{{ object.description }}
                         </p>
                     </div>
+                    {% if user == object.owner or user.is_staff %}
+                    <a href="{% url 'realty:update' object.pk %}" class="btn btn-primary me-md-2">Редактировать</a>
+                    <a href="{% url 'realty:delete' object.pk %}" class="btn btn-danger me-md-2">Удалить</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

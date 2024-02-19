@@ -2,6 +2,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from news.forms import NewsForm
 from news.models import News
+from django.http import Http404
 from pytils.translit import slugify
 
 
@@ -38,6 +39,12 @@ class NewsUpdateView(UpdateView):
     model = News
     form_class = NewsForm
 
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        if self.object.owner != self.request.user and not self.request.user.is_staff:
+            raise Http404
+        return self.object
+
     def form_valid(self, form):
         if form.is_valid():
             news = form.save()
@@ -53,3 +60,9 @@ class NewsUpdateView(UpdateView):
 class NewsDeleteView(DeleteView):
     model = News
     success_url = reverse_lazy('users:profile')
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        if self.object.owner != self.request.user and not self.request.user.is_staff:
+            raise Http404
+        return self.object
