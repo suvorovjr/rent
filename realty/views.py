@@ -3,7 +3,7 @@ from django.urls import reverse_lazy, reverse
 from realty.models import Realty, RealtyPhoto
 from realty.filters import RealtyFilter
 from django.core.cache import cache
-from config import settings
+from django.conf import settings
 from django.http import Http404
 from realty.forms import RealtyForm
 
