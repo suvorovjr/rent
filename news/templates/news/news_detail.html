@@ -28,7 +28,7 @@
                         {{ object.body }}
                     </p>
                 </div>
-                {% if user == object.author %}
+                {% if user == object.author or user.is_staff %}
                 <a href="{% url 'news:update' object.slug %}" class="btn btn-primary me-md-2">Редактировать</a>
                 <a href="{% url 'news:delete' object.pk %}" class="btn btn-danger me-md-2">Удалить</a>
                 {% endif %}
