@@ -1,6 +1,7 @@
 from django.views.generic import CreateView, ListView, TemplateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from realty.models import Realty, RealtyPhoto
+from realty.filters import RealtyFilter
 from django.http import Http404
 from realty.forms import RealtyForm
 
@@ -44,7 +45,13 @@ class RealtyListView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         queryset = queryset.prefetch_related('photo')
-        return queryset
+        self.filterset = RealtyFilter(self.request.GET, queryset=queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['filter'] = self.filterset
+        return context_data
 
 
 class RealtyDetailView(DetailView):

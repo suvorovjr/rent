@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from news.forms import NewsForm
-from news.models import News, Categories
+from news.models import News
 from django.http import Http404
 from news.filters import NewsFilter
 from pytils.translit import slugify

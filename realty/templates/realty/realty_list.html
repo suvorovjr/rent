@@ -40,6 +40,23 @@
                 {% endfor %}
             </ul>
         </div>
+        <div class="widgets" data-sticky="true" data-stop="90">
+            <div class="widgets_item widgets_item--categories">
+                <h4 class="widgets_item-header">Категория</h4>
+                <form method="get" class="form-inline">
+                    <div class="col-xl-5 pb-md-4 pb-3">
+                        {{ filter.form.realty_type }}
+                    </div>
+                    <div class="col-xl-5 pb-md-4 pb-3">
+                        {{ filter.form.transaction_type }}
+                    </div>
+                    <div class="col-xl-5 pb-md-4 pb-3">
+                        {{ filter.form.room }}
+                    </div>
+                    <button type="submit" class="theme-element theme-element--accent btn">Применить фильтр</button>
+                </form>
+            </div>
+        </div>
     </div>
 </main>
 <!-- rooms page content end -->
