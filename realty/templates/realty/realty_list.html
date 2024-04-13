@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load news_tags %}
 {% load static %}
 {% block content %}
 <!-- rooms page content start -->
@@ -29,7 +30,7 @@
                                 <span class="main_metadata-item d-inline-flex align-items-center">
                                     <img style="width: 30px" src="{% static 'img/room.svg' %}" alt="img">
                                     <span class="number">{{ object.room }}</span>
-                                    <span class="text">Zamena</span>
+                                    <span class="text">{{ Комната }}</span>
                                 </span>
                             </div>
                             <a class="theme-element theme-element--accent btn"

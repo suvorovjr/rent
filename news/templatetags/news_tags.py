@@ -11,3 +11,15 @@ def get_views(views_count):
         return 'просмотра'
     else:
         return 'просмотров'
+
+
+@register.filter(name='get_number_rooms')
+def get_number_rooms(rooms):
+    int_room = int(rooms)
+    if int_room % 10 == 1 and int_room != 11:
+        return 'Комната'
+    elif int_room % 10 in [2, 3, 4] and int_room not in [11, 12, 13, 14]:
+        return 'Комнаты'
+    else:
+        return 'Комнат'
+
